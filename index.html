@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="script.js"></script>
+    <title>Barcode Tool</title>
+</head>
+<body onload="getIP()">
+    <div class="container">
+        <div class="container-close"><i id="icon" class="clickable fa-solid fa-arrows-rotate"></i></div>
+        <div>
+            <h2 id="headlineText" style="text-align: center;">Barcode</h2>
+            <svg class="barcode"
+                jsbarcode-format="upc"
+                jsbarcode-value="123456789012"
+                jsbarcode-textmargin="0"
+                jsbarcode-fontoptions="bold">
+            </svg>
+        </div>
+        <div class="container-text">
+            <form onsubmit="printBarcode(); return false;" style="width: 100%;">
+                <input class="long" type="text" id="printerIp" placeholder="Drucker IP" title="IP des Druckers">
+                <button class="long" type="button" onclick="saveIP()">IP Speichern</button>
+                <br />
+                <input class="long" type="text" id="headline" placeholder="Kopfzeile" title="Kopfzeile des Barcodes">
+                <div class="grid">
+                    <input class="prefix" type="text" id="precode" title="Inhalt der vor jeden Barcode geschrieben werden soll">
+                    <input class="barcodeInput" type="text" id="barcode" placeholder="Barcode" title="Barcode">
+                    <input class="multi" type="number" id="multiplicator" placeholder="1x" title="Anzahl der zu druckenden Barcodes">
+                </div>
+                <button class="long" type="submit">Drucken</button>
+                <span><a href="mailto:soestabenow@fiege.com">Support</a> | Sören Stabenow</span>
+            </form>
+            <div id="output"></div>
+        </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  <script src="https://kit.fontawesome.com/61636461d5.js" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById('icon').addEventListener("click", clear);
+    JsBarcode(".barcode").init();
+  </script>
+</body>
+</html>
